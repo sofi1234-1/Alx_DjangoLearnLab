@@ -21,6 +21,8 @@ urlpatterns = [
 add_book/
 edit_book/
 delete_book
+# urls.py
+
 from django.urls import path
 from .views import admin_view, librarian_view, member_view
 
@@ -29,4 +31,5 @@ urlpatterns = [
     path('librarian/', librarian_view, name='librarian-view'),
     path('member/', member_view, name='member-view'),
 ]
+
 
