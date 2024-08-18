@@ -12,7 +12,7 @@ def query_books_in_library(library_name):
 
 def query_librarian_for_library(library_name):
     librarian = Library.objects.get(name=library_name)
-    librarian = library.librarian
+    library = library.librarian
     return librarian
 
 # Example usage:
