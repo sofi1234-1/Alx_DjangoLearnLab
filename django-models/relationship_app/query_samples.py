@@ -15,21 +15,22 @@ def query_librarian_for_library(library_name):
     librarian = library.librarian
     return librarian
 
-     # Example usage:
+# Example usage:
 if __name__ == "__main__":
-         # Example: Find books by "George Orwell"
-orwell_books = query_books_by_author("George Orwell")
-print("Books by George Orwell:")
-for book in orwell_books:
-      print(book)
-
-         # Example: Find books in "Central Library"
-central_library_books = query_books_in_library("Central Library")
-print("nBooks in Central Library:")
-for book in central_library_books:
+    # Example: Find books by "George Orwell"
+    orwell_books = query_books_by_author("George Orwell")
+    print("Books by George Orwell:")
+    for book in orwell_books:
         print(book)
 
-         # Example: Find librarian for "Central Library"
-central_library_librarian = query_librarian_for_library("Central Library")
-print("nLibrarian for Central Library:")
-print(central_library_librarian)
+    # Example: Find books in "Central Library"
+    central_library_books = query_books_in_library("Central Library")
+    print("Books in Central Library:")
+    for book in central_library_books:
+        print(book)
+
+       # Example: Find librarian for "Central Library"
+       central_library_librarian = query_librarian_for_library("Central Library")
+       print("Librarian for Central Library:")
+       print(central_library_librarian)
+   
