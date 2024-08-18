@@ -6,12 +6,12 @@ def query_books_by_author(author_name):
     return books
 
 def query_books_in_library(library_name):
-    library = Library.objects.get(name=library_name)
+    library = Librarian.objects.get(library=
     books = library.books.all()
     return books
 
 def query_librarian_for_library(library_name):
-    library = Library.objects.get(name=library_name)
+    library = Librarian.objects.get(library=
     librarian = library.librarian
     return librarian
 
