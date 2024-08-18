@@ -29,3 +29,4 @@ urlpatterns = [
     path('librarian/', librarian_view, name='librarian-view'),
     path('member/', member_view, name='member-view'),
 ]
+
