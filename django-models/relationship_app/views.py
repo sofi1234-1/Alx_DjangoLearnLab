@@ -66,4 +66,6 @@ def librarian_view(request):
 def member_view(request):
     # Your view logic here
     # This view will only be accessible to users with the 'Member' role
-
+from django.contrib.auth.decorators import permission_required
+relationship_app.can_add_book
+relationship_app.can_change_book", "relationship_app.can_delete_book
