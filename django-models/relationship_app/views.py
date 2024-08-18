@@ -69,3 +69,25 @@ def member_view(request):
 from django.contrib.auth.decorators import permission_required
 relationship_app.can_add_book
 relationship_app.can_change_book", "relationship_app.can_delete_book
+```python
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+
+def is_admin(user):
+    return user.userprofile.role == 'Admin'
+
+@user_passes_test(is_admin)
+def admin_view(request):
+    # Your 'Admin' view logic here
+    # Only users with the 'Admin' role can access this view
+
+@user_passes_test(lambda u: u.userprofile.role == 'Librarian')
+def librarian_view(request):
+    # Your 'Librarian' view logic here
+    # Only users with the 'Librarian' role can access this view
+
+@user_passes_test(lambda u: u.userprofile.role == 'Member')
+def member_view(request):
+    # Your 'Member' view logic here
+    # Only users with the 'Member' role can access this view
+```
