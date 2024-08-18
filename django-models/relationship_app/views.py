@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -33,3 +34,17 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
+=======
+from django.shortcuts import render
+from django.views.generic import DetailView
+from relationship_app.models import Book, Library  # Import both Book and Library models
+from .models import Library
+from django.views.generic.detail import DetailView
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'books': books})
+
+class LibraryDetailView(DetailView):
+    model = Library
+    template_name = 'relationship_app/library_detail.html'
+>>>>>>> 063c4d52038628360ec3ace8ec01fc697f20f7d8
