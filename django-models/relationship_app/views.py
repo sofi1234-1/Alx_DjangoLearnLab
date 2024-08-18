@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Library
-
+from django.contrib.auth import login
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
