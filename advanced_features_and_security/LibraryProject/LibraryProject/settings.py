@@ -128,5 +128,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 SECURE_SSL_REDIRECT
 SECURE_HSTS_SECONDS
+31536000
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
