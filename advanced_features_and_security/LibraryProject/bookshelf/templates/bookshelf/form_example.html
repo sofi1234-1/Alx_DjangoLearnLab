@@ -1,6 +1,14 @@
-<!-- form_example.html -->
-<form method="post">
-    {% csrf_token %}
-    <!-- form fields -->
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Form</title>
+</head>
+<body>
+    <h1>Create a New Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
