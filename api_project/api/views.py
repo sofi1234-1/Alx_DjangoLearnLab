@@ -11,3 +11,11 @@ class BookList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
    
 generics.ListAPIView
+from rest_framework import viewsets
+from .models import Book
+from .serializers import BookSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+   
