@@ -5,3 +5,4 @@ urlpatterns = [
     path('books/', views.BookList.as_view()),
 ]
    
+api.urls
