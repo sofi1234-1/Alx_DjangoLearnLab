@@ -13,17 +13,16 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-# ... code ...
+   
+   # ... code ...
 class Author(models.Model):
     """
     Represents an author of a book.
     """
-    # ... code ...
+       # ... code ...
 class Book(models.Model):
     """
     Represents a book, with a title, publication year, and a foreign key relationship to the Author model.
     """
-    # ... code ...
-   
-
+       # ... code ...
    

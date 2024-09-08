@@ -18,6 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
         if value > date.today().year:
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value 
+   
    # ... code ...
 class BookSerializer(serializers.ModelSerializer):
     """
@@ -25,4 +26,3 @@ class BookSerializer(serializers.ModelSerializer):
     """
        # ... code ...
    
-
