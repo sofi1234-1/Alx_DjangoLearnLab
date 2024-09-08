@@ -42,4 +42,4 @@ class BookListView(generics.ListCreateAPIView):
     ordering_fields = ['title', 'published_date']
     ordering = ['title']  # Default ordering
 filters.OrderingFilter
-
+filters.SearchFilter
