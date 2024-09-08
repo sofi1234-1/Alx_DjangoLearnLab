@@ -25,4 +25,5 @@ class BookSerializer(serializers.ModelSerializer):
     Serializes Book model instances, including nested author information.
     """
        # ... code ...
+(many=True, read_only=True)
    
