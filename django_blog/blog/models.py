@@ -43,3 +43,10 @@ class Comment(models.Model):
         return f'{self.author} on {self.post}'
 
 # Optional: any other necessary imports
+from django.db import models
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
