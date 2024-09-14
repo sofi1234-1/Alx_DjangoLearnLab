@@ -30,11 +30,28 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Write your comment here...'}),
         }
 from django import forms
-from .models import Post, Tag
+from .models import Post
+from taggit.models import Tag
 
 class PostForm(forms.ModelForm):
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple)
+    # This will automatically use the TaggitManager's functionality when integrating
+    tags = forms.CharField(required=False, help_text="Enter tags separated by commas.")
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'tags')
+        fields = ['title', 'content', 'tags']
+
+    def save(self, commit=True):
+        # Save instance first
+        post = super(PostForm, self).save(commit=commit)
+
+        # Process and set tags
+        tags = self.cleaned_data['tags']
+        if tags:
+            # Clear existing tags and apply new ones
+            post.tags.clear()
+            post.tags.add(*[tag.strip() for tag in tags.split(',') if tag.strip()])
+        
+        if commit:
+            post.save()
+        return post
