@@ -52,3 +52,14 @@ urlpatterns = [
     # URL pattern for deleting an existing comment
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:post_pk>/comments/new/', views.CommentCreateView.as_view(), name='comment-create'),
+    path('comment/<int:pk>/update/', views.CommentUpdateView.as_view(), name='comment-update'),
+    path('comment/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment-delete'),
+    path('tags/<str:tag_name>/', views.TagView.as_view(), name='tag'),
+    path('search/', views.search, name='search'),
+]
