@@ -166,3 +166,14 @@ def post_list(request):
         posts = Post.objects.all()
 
     return render(request, 'blog/post_list.html', {'posts': posts})
+from django.shortcuts import render, redirect
+from .models import Post
+from .forms import SearchForm
+
+def search(request):
+    form = SearchForm(request.GET)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+        return render(request, 'blog/search_results.html', {'posts': posts})
+    return render(request, 'blog/search.html', {'form': form})
