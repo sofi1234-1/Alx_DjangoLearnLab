@@ -30,12 +30,25 @@ class CommentForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Write your comment here...'}),
         }
 from django import forms
+from django.utils.safestring import mark_safe
 from .models import Post
 from taggit.models import Tag
 
+class TagWidget(forms.TextInput):
+    def __init__(self, attrs=None):
+        default_attrs = {'placeholder': 'Enter tags separated by commas'}
+        if attrs:
+            default_attrs.update(attrs)
+        super().__init__(attrs=default_attrs)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        # If value is a list of tags, join them with commas for display
+        if isinstance(value, list):
+            value = ', '.join(value)
+        return super().render(name, value, attrs, renderer)
+
 class PostForm(forms.ModelForm):
-    # This will automatically use the TaggitManager's functionality when integrating
-    tags = forms.CharField(required=False, help_text="Enter tags separated by commas.")
+    tags = forms.CharField(required=False, widget=TagWidget())
 
     class Meta:
         model = Post
