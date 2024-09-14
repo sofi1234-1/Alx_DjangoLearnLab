@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <p>Written by: {{ post.author }} on {{ post.created_at }}</p>
+    <p>{{ post.content }}</p>
+    <a href="{% url 'post-update' post.pk %}">Edit</a>
+    <form action="{% url 'post-delete' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'post-list' %}">Back to posts</a>
+{% endblock %}
