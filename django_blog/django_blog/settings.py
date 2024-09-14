@@ -126,3 +126,10 @@ TEMPLATES = [
     },
 ]
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'profile'
+# Add your incoming changes here
+
+
