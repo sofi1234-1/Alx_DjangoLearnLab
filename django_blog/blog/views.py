@@ -152,20 +152,17 @@ class CommentUpdateView(LoginRequiredMixin, UpdateView):
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'blog/comment_delete_confirm.html'
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Post
-from .forms import SearchForm
 
-def search(request):
-    form = SearchForm(request.GET)
-    if form.is_valid():
-        query = form.cleaned_data['query']
-        posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
-        return render(request, 'blog/search_results.html', {'posts': posts})
-    return render(request, 'blog/search.html', {'form': form})
+def post_list(request):
+    # Get the search_tag from the request
+    search_tag = request.GET.get('tag')
+    
+    # Filter posts based on the tag if provided
+    if search_tag:
+        posts = Post.objects.filter(tags__name__icontains=search_tag)
+    else:
+        posts = Post.objects.all()
 
-    def get_queryset(self):
-        return Comment.objects.filter(author=self.request.user)
-
-    def get_success_url(self):
-        return reverse_lazy('post-detail', kwargs={'pk': self.object.post.pk})
+    return render(request, 'blog/post_list.html', {'posts': posts})
