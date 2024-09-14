@@ -30,3 +30,14 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),  # Edit existing post
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'), # Delete specific post
 ]
+# blog/urls.py
+
+from django.urls import path
+from .views import post_detail, comment_edit, comment_delete
+
+urlpatterns = [
+    # Other paths...
+    path('post/<int:pk>/', post_detail, name='post-detail'),
+    path('comment/<int:comment_id>/edit/', comment_edit, name='comment-edit'),
+    path('comment/<int:comment_id>/delete/', comment_delete, name='comment-delete'),
+]
