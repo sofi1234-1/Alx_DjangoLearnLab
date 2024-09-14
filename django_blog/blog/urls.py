@@ -33,11 +33,11 @@ urlpatterns = [
 # blog/urls.py
 
 from django.urls import path
-from .views import post_detail, comment_edit, comment_delete
+from .views import PostDetailView, CommentCreateView, CommentUpdateView, CommentDeleteView
 
 urlpatterns = [
-    # Other paths...
-    path('post/<int:pk>/', post_detail, name='post-detail'),
-    path('comment/<int:comment_id>/edit/', comment_edit, name='comment-edit'),
-    path('comment/<int:comment_id>/delete/', comment_delete, name='comment-delete'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:post_pk>/comments/new/', CommentCreateView.as_view(), name='comment-create'),
+    path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='comment-edit'),
+    path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
