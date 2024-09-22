@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework.authtoken.models import Token
 from django.utils.translation import gettext_lazy as _
 
-User = get_user_model()
+User = get_user_model().objects.create_user
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
