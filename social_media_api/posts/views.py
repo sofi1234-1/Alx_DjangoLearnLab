@@ -40,3 +40,18 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     filterset_class = PostFilter
+from rest_framework import permissions
+from rest_framework import viewsets
+from .models import Post
+from .serializers import PostSerializer
+from rest_framework.response import Response
+
+class UserFeedView(viewsets.ViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request):
+        # Get posts from users this user follows
+        followed_users = request.user.following.all()
+        posts = Post.objects.filter(author__in=followed_users).order_by('-created_at')  # Newest posts first
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
