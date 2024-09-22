@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <p>Written by: {{ post.author }} on {{ post.created_at }}</p>
+    <p>{{ post.content }}</p>
+    <a href="{% url 'post-update' post.pk %}">Edit</a>
+    <form action="{% url 'post-delete' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'post-list' %}">Back to posts</a>
+{% endblock %}
+<!-- blog/templates/blog/post_detail.html -->
+
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+
+<h2>Comments</h2>
+<div id="comments">
+    {% for comment in comments %}
+        <div class="comment">
+            <strong>{{ comment.author }}</strong> - {{ comment.created_at }}
+            <p>{{ comment.content }}</p>
+            {% if user == comment.author %}
+                <a href="{% url 'comment-edit' comment.id %}">Edit</a>
+                <form action="{% url 'comment-delete' comment.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+</div>
+
+<h3>Add a Comment</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Submit</button>
+</form>
